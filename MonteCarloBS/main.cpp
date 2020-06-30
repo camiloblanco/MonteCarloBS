@@ -62,15 +62,17 @@ void EuropeanMC() {
 	cin >> sigma;
 	cout << "Please enter the Annual risk-free interest rate (r): " << endl;
 	cin >> r;
+	int N = 10000;
+	cout << "Please enter the Number of Monte carlo simulations (N): " << endl;
+	cin >> N;
 
 	// Sampling dates from https://en.wikipedia.org/wiki/Trading_day
 	m=int(T*253);
-	int N = 10000;
 	double eps = 0.001;
 
 	if (T > 0 && K >= 0 && m > 0 && S0 >= 0 && sigma >= 0 && r >= 0) {
 
-		// Declare qn optionsPTRvec pointers vector, an EurCallBS, and an EurPutBS Objects
+		// Declare qn optionsPTRvec pointers vector, an EurCallMC, and an EurPutMC Objects
 		vector<GenericOptionBS*> optionsPTRvec;
 		GenericOptionBS* eurCallPTR = new EurCallMC(T, K, m);
 		GenericOptionBS* eurPutPRT = new EurPutMC(T, K, m);
